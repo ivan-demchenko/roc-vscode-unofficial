@@ -13,6 +13,11 @@ Musician : { firstName : Str, lastName : Str }
 amy : Musician
 amy = { firstName: "Amy", lastName: "Lee" }
 
+_asd = 123
+
+demo =
+  .qsasd
+
 task =
     _ <- await (Stdout.line "Type something press Enter:")
     text <- await Stdin.line
