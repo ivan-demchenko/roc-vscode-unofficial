@@ -27,7 +27,7 @@
       "match": "\\b(dbg|if|then|else|when|is|app|packages|imports|provides|to)\\s+",
       "name": "keyword.control.roc"
     },
-    { "include": "#module-function-access" },
+    { "include": "#module-member-access" },
     { "include": "#language-components" },
     { "include": "#infix_op" },
     { "include": "#type-signature" },
@@ -39,6 +39,10 @@
     "comma": {
       "match": "(,)",
       "name": "punctuation.separator.comma.roc"
+    },
+    "arrow": {
+      "match": "->",
+      "name": "punctuation.separator.arrow.roc"
     },
     "parens": {
       "match": "(\\(|\\))",
@@ -176,13 +180,8 @@
             }
           }
         },
-        {
-          "match": "\\->",
-          "name": "keyword.operator.arrow.roc"
-        },
-        {
-          "include": "#module-function-access"
-        },
+        { "include": "#arrow" },
+        { "include": "#module-member-access" },
         {
           "match": "\\b[a-z][a-zA-Z0-9_]*\\b",
           "name": "variable.type.roc"
@@ -191,12 +190,8 @@
           "match": "\\b[A-Z][a-zA-Z0-9_]*\\b",
           "name": "storage.type.roc"
         },
-        {
-          "include": "#comments"
-        },
-        {
-          "include": "#type-record"
-        }
+        { "include": "#comments" },
+        { "include": "#type-record" }
       ]
     },
     "type-record": {
@@ -250,8 +245,8 @@
         { "include": "#type-record" }
       ]
     },
-    "module-function-access": {
-      "name": "meta.module.name.roc",
+    "module-member-access": {
+      "name": "meta.module.access.roc",
       "begin": "([A-Z][a-zA-Z0-9_]*)(\\.)",
       "beginCaptures": {
         "1": {
@@ -263,10 +258,14 @@
       },
       "end": "\\s",
       "patterns": [
-        { "include": "#module-function-access" },
+        { "include": "#module-member-access" },
         {
-          "match": "\\b[a-z][a-zA-Z0-9_]*\\b",
+          "match": "\\b[a-z][a-zA-Z0-9_']*\\b",
           "name": "variable.type.roc"
+        },
+        {
+          "match": "\\b[A-Z][a-zA-Z0-9_]*\\b",
+          "name": "entity.name.type.roc"
         }
       ]
     },
@@ -284,15 +283,11 @@
       "end": "((^(?=[a-z]))|^$)",
       "patterns": [
         {
-          "match": "->",
-          "name": "keyword.operator.arrow.roc"
-        },
-        {
           "match": "\\s+",
           "name": "punctuation.spaces.roc"
         },
         {
-          "include": "#module-function-access"
+          "include": "#module-member-access"
         },
         {
           "match": "\\b[a-z][a-zA-Z0-9_]*\\b",
@@ -302,6 +297,7 @@
           "match": "\\b[A-Z][a-zA-Z0-9_]*\\b",
           "name": "storage.type.roc"
         },
+        { "include": "#arrow" },
         { "include": "#unit" },
         { "include": "#comma" },
         { "include": "#parens" },

@@ -18,6 +18,7 @@ _asd = 123
 demo =
   .qsasd
 
+task : a -> Int -> Str.Int.asd -> Foo.Bar -> a
 task =
     _ <- await (Stdout.line "Type something press Enter:")
     text <- await Stdin.line
