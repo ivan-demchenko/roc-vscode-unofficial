@@ -1,6 +1,7 @@
 {
   "name": "roc-lang-unofficial",
   "version": "0.0.1",
+  "icon": "resources/roc-logo.png",
   "displayName": "roc-lang-unofficial",
   "description": "Roc language support",
   "publisher": "IvanDemchenko",
