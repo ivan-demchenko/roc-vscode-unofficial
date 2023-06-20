@@ -1,16 +1,17 @@
-# Roc language VSCode extension (experimental)
+# Roc language VSCode extension (unofficial)
 
 The unofficial VSCode extension for the [Roc language](https://roc-lang.org/).
 
-This extension is in its infantry state. Pull requests are highly appreciated!
-
 ## Features
 
-As of now, the extension focuses on the syntax highlight. The LSP is next on the roadmap.
+- Syntax highlighting
 
 ## Release Notes
 
-### 0.0.1
+### 0.0.2
 
-- Initial release
-- First iteration on syntax highlight
+- Improved syntax highlighting
+
+## Roadmap
+
+[ ] LSP integration

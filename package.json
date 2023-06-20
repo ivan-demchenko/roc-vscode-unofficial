@@ -1,14 +1,15 @@
 {
   "name": "roc-lang-unofficial",
+  "version": "0.0.1",
   "displayName": "roc-lang-unofficial",
   "description": "Roc language support",
   "publisher": "IvanDemchenko",
+  "pricing": "Free",
+  "license": "MIT",
   "author": {
     "name": "Ivan Demchenko",
     "email": "idemchenko.js@gmail.com"
   },
-  "license": "MIT",
-  "version": "0.0.1",
   "engines": {
     "vscode": "^1.79.0"
   },
