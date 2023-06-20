@@ -1,6 +1,6 @@
 {
   "name": "roc-lang-unofficial",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "resources/roc-logo.png",
   "displayName": "roc-lang-unofficial",
   "description": "Roc language support",
@@ -27,8 +27,14 @@
     "languages": [
       {
         "id": "roc",
-        "aliases": ["Roc", "roc", "roc-lang"],
-        "extensions": [".roc"],
+        "aliases": [
+          "Roc",
+          "roc",
+          "roc-lang"
+        ],
+        "extensions": [
+          ".roc"
+        ],
         "configuration": "./src/roc-language-configuration.json"
       }
     ],
