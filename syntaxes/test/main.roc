@@ -16,7 +16,7 @@ amy = { firstName: "Amy", lastName: "Lee" }
 _asd = 123
 
 demo =
-  .qsasd
+  .fooBar
 
 task : a -> Int -> Str.Int.asd -> Foo.Bar -> a
 task =

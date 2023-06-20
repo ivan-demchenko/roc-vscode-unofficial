@@ -1,7 +1,7 @@
 app "args"
     packages { pf: "cli-platform/main.roc" }
-    imports [pf.Stdout, pf.Arg, pf.Task.{ Task }, pf.Process]
-    provides [main] to pf
+    imports [ pf.Stdout, pf.Arg, pf.Task.{ Task }, pf.Process ]
+    provides [ main ] to pf
 
 main : Task {} []
 main =
