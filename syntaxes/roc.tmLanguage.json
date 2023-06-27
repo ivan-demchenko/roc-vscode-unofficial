@@ -79,7 +79,7 @@
     "comments": {
       "patterns": [
         {
-          "begin": "# ",
+          "begin": "#",
           "end": "$",
           "name": "comment.line.number-sign.roc",
           "captures": {
@@ -89,7 +89,7 @@
           }
         },
         {
-          "begin": "## ",
+          "begin": "##",
           "end": "$",
           "name": "comment.block.documentation.roc",
           "captures": {
