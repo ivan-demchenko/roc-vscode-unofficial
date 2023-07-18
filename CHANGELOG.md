@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.8]
+
+- Improve syntax highlighting (support for `as` keyword)
+
 ## [0.0.7]
 
 - Fix highlighting for numbers with underscores
