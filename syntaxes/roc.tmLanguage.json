@@ -8,7 +8,7 @@
       "name": "keyword.unused.roc"
     },
     {
-      "match": "\\b(dbg|if|then|else|when|is|app|packages|imports|provides|to|as)\\s+",
+      "match": "\\b(dbg|if|then|else|when|is|app|packages|imports|provides|to|as|expect)\\s+",
       "name": "keyword.control.roc"
     },
     { "include": "#comments" },
