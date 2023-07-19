@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.9]
+
+- Improve syntax highlighting (support for `expect` keyword)
+
 ## [0.0.8]
 
 - Improve syntax highlighting (support for `as` keyword)
