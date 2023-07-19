@@ -1,6 +1,6 @@
 {
   "name": "roc-lang-unofficial",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "icon": "resources/roc-logo.png",
   "displayName": "Roc (Unofficial)",
   "description": "Roc language support",
