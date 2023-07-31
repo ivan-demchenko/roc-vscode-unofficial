@@ -8,7 +8,7 @@ The unofficial VSCode extension for the [Roc language](https://roc-lang.org/).
 
 ## Release Notes
 
-### 0.0.9
+### 0.0.10
 
 - Various improvements to syntax highlighting and extension metadata.
 
