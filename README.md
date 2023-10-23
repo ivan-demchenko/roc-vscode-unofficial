@@ -12,14 +12,13 @@ The unofficial VSCode extension for the [Roc language](https://roc-lang.org/).
 First, acquire a language server binary. The instructions for how to do so can
 be found in [this README](https://github.com/ayazhafiz/roc/blob/lang-srv/crates/lang_srv/README.md).
 
-Update your VSCode `settings.json` to point to the language server binary
-location:
+Update your VSCode `settings.json` to point to the language server binary location:
 
-```
+```json
 {
-    "roc-lang.language-server.exe": "<path to language server binary>",
-    // If you'd like to format Roc files on save
-    "editor.formatOnSave": true
+  "roc-lang.language-server.exe": "<path to language server binary>",
+  // If you'd like to format Roc files on save
+  "editor.formatOnSave": true
 }
 ```
 

@@ -51,8 +51,14 @@
     ],
     "commands": [
       {
-        "command": "roc-lang-experiment.helloWorld",
-        "title": "Hello World"
+        "command": "roc-lang-unofficial.ls-start",
+        "title": "Start Language Server",
+        "category": "Roc (unofficial)"
+      },
+      {
+        "command": "roc-lang-unofficial.ls-stop",
+        "title": "Stop Language Server",
+        "category": "Roc (unofficial)"
       }
     ],
     "configuration": [
