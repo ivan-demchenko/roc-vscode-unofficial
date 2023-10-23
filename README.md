@@ -35,3 +35,4 @@ Big kudos to early contributors:
 
 - [Hannes](https://github.com/Hasnep)
 - [Richard Feldman](https://github.com/rtfeldman)
+- [ayazhafiz](https://github.com/ayazhafiz)
