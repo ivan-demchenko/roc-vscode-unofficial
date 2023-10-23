@@ -54,6 +54,22 @@
         "command": "roc-lang-experiment.helloWorld",
         "title": "Hello World"
       }
+    ],
+    "configuration": [
+      {
+        "type": "object",
+        "title": "roc-lang",
+        "properties": {
+          "roc-lang.language-server.exe": {
+            "type": "string",
+            "description": "Path to the language server executable"
+          },
+          "roc-lang.language-server.debug-exe": {
+            "type": "string",
+            "description": "Path to the debug language server executable"
+          }
+        }
+      }
     ]
   },
   "scripts": {
@@ -92,5 +108,8 @@
     "**/*": [
       "prettier --write --ignore-unknown --list-different"
     ]
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
   }
 }
