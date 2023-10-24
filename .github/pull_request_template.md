@@ -1,5 +1,5 @@
 <!--
-Thank you for your contribution
+Thank you for your contribution!
 -->
 
 ## Description
