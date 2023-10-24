@@ -24,9 +24,9 @@ Update your VSCode `settings.json` to point to the language server binary locati
 
 ## Release Notes
 
-### 0.0.10
+### 0.1.0
 
-- Various improvements to syntax highlighting and extension metadata.
+- Language server integration
 
 ## Contributors
 

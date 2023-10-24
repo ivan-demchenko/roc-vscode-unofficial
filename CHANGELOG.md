@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.1.0]
+
+- Language server integration
+
 ## [0.0.10]
 
 - Improve syntax highlighting (support for `exposes` keyword)
