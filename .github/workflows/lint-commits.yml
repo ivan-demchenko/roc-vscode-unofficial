@@ -1,4 +1,4 @@
-name: Conventional Commits
+name: Lint commit messages
 
 on:
   pull_request:
