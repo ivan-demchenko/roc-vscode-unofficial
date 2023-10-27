@@ -101,27 +101,56 @@
       ]
     },
     "strings": {
-      "name": "string.quoted.double.roc",
-      "begin": "\"",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.roc"
-        }
-      },
-      "end": "\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.roc"
-        }
-      },
       "patterns": [
         {
-          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
-          "name": "constant.character.escape.roc"
+          "name": "string.quoted.double.roc",
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.roc"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.roc"
+            }
+          },
+          "patterns": [
+            {
+              "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
+              "name": "constant.character.escape.roc"
+            },
+            {
+              "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
+              "name": "constant.character.escape.control.roc"
+            }
+          ]
         },
         {
-          "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
-          "name": "constant.character.escape.control.roc"
+          "name": "string.quoted.single.roc",
+          "begin": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.roc"
+            }
+          },
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.roc"
+            }
+          },
+          "patterns": [
+            {
+              "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
+              "name": "constant.character.escape.roc"
+            },
+            {
+              "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
+              "name": "constant.character.escape.control.roc"
+            }
+          ]
         }
       ]
     },
