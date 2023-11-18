@@ -9,15 +9,32 @@ const CONFIG_OPTION = {
   },
 } as const;
 
+function convertUnknownToString(val: unknown): Option<string> {
+  if (typeof val !== 'string' || val === '') {
+    return None;
+  }
+  return Some(val);
+}
+
 function getStringConfig(key: string): Option<string> {
   const lsExe = vscode.workspace
     .getConfiguration(CONFIGURATION_HEADER)
     .get(key);
 
-  if (typeof lsExe !== 'string' || lsExe === '') {
-    return None;
+  return convertUnknownToString(lsExe);
+}
+
+function getEnvVar(key: string): Option<string> {
+  const val = process.env[key];
+  return convertUnknownToString(val);
+}
+
+function optionOr<T>(opt: Option<T>, fallback: Option<T>): Option<T> {
+  if (opt.some) {
+    return opt;
   }
-  return Some(lsExe);
+
+  return fallback;
 }
 
 export type ModuleAPI = {
@@ -28,10 +45,16 @@ export type ModuleAPI = {
 export function activate(): ModuleAPI {
   return {
     getExecutablePath: () => {
-      return getStringConfig(CONFIG_OPTION.languageServer.exe);
+      return optionOr(
+        getStringConfig(CONFIG_OPTION.languageServer.exe),
+        getEnvVar('ROC_LSP_PATH'),
+      );
     },
     getDebugExecutablePath: () => {
-      return getStringConfig(CONFIG_OPTION.languageServer.debugExe);
+      return optionOr(
+        getStringConfig(CONFIG_OPTION.languageServer.debugExe),
+        getEnvVar('ROC_LSP_DEBUG_PATH'),
+      );
     },
   };
 }
