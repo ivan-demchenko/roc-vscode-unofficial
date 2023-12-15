@@ -8,12 +8,15 @@ The unofficial VSCode extension for the [Roc language](https://roc-lang.org/). D
 ## Features
 
 - Syntax highlighting
-- Language server integration
+- With the language server:
+    - Shows errors/warnings inline
+    - Hover to view type
+    - Go-to-definition (not for builtins)
+    - Format on save
 
 ### Configuring language server
 
-First, acquire a language server binary. The instructions for how to do so can
-be found in [this README](https://github.com/ayazhafiz/roc/blob/lang-srv/crates/lang_srv/README.md).
+The `roc_lang_server` binary is included with [the roc nightly](https://github.com/roc-lang/roc/releases). You can also [build it from source](https://github.com/roc-lang/roc/blob/main/crates/lang_srv/README.md#building-from-source) if you need to.
 
 Update your VSCode `settings.json` to point to the language server binary location:
 
