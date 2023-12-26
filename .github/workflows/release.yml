@@ -16,5 +16,5 @@ jobs:
       - run: npm run release:start
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # In case you want to publish to Visual Studio Marketplace
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
