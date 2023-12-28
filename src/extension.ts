@@ -4,8 +4,10 @@ import * as LanguageClientModule from './lang-server-client';
 import * as ConfigReaderModule from './config-reader';
 
 export function activate(context: vscode.ExtensionContext) {
+  const outputChannel = OutputChannelModule.activate(context);
+
   const langClientApi = LanguageClientModule.activate(
-    OutputChannelModule.activate(context),
+    outputChannel,
     ConfigReaderModule.activate(),
   );
 
@@ -41,6 +43,8 @@ export function activate(context: vscode.ExtensionContext) {
       );
     }),
   );
+
+  outputChannel.server.append('You are ready to Roc!');
 }
 
 export function deactivate() {
