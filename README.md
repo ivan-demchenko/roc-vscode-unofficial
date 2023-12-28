@@ -1,6 +1,9 @@
 # Roc language VSCode extension (unofficial)
 
-The unofficial VSCode extension for the [Roc language](https://roc-lang.org/).
+The unofficial VSCode extension for the [Roc language](https://roc-lang.org/). Download it from:
+
+- [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=IvanDemchenko.roc-lang-unofficial)
+- [Open VSX Registry](https://open-vsx.org/extension/IvanDemchenko/roc-lang-unofficial)
 
 ## Features
 
