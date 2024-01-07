@@ -118,12 +118,58 @@
           },
           "patterns": [
             {
-              "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
+              "name": "invalid.illegal",
+              "begin": "\\\\u\\(",
+              "beginCaptures": {
+                "0": {
+                  "name": "constant.character.escape.roc"
+                }
+              },
+              "end": "\\)",
+              "endCaptures": {
+                "0": {
+                  "name": "constant.character.escape.roc"
+                }
+              },
+              "patterns": [
+                {
+                  "match": "[0-9a-fA-F]+",
+                  "name": "constant.numeric.roc"
+                }
+              ]
+            },
+            {
+              "match": "\\\\[nrt\\\\\\\"\\\\]",
               "name": "constant.character.escape.roc"
             },
             {
-              "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
-              "name": "constant.character.escape.control.roc"
+              "name": "source.roc",
+              "begin": "\\$\\(",
+              "beginCaptures": {
+                "0": {
+                  "name": "constant.character.escape.roc"
+                }
+              },
+              "end": "\\)",
+              "endCaptures": {
+                "0": {
+                  "name": "constant.character.escape.roc"
+                }
+              },
+              "patterns": [
+                {
+                  "match": "\\b(dbg|expect|if|then|else|when|is|as)\\s+",
+                  "name": "keyword.control.roc"
+                },
+                { "include": "#comments" },
+                { "include": "#strings" },
+                { "include": "#numbers" },
+                { "include": "#punctuation" },
+                { "include": "#module-member-access" },
+                { "include": "#language-components" },
+                { "include": "#infix_op" },
+                { "include": "#type-signature" }
+              ]
             }
           ]
         },
@@ -143,12 +189,8 @@
           },
           "patterns": [
             {
-              "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
+              "match": "\\\\[nrt\\\\'\\\\]",
               "name": "constant.character.escape.roc"
-            },
-            {
-              "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
-              "name": "constant.character.escape.control.roc"
             }
           ]
         }
