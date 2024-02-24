@@ -1,30 +1,45 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     roc = {
       url = "github:roc-lang/roc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        node = pkgs.nodejs_18;
-        # NOTE: this includes the cli as well as the lang server
-        # we could switch to .lang-server if we wanted to be slightly smaller on the dep
-        roc-full = inputs.roc.packages.${system}.full;
-      in {
-        formatter = pkgs.nixpkgs-fmt;
-        devShells = {
-          default = pkgs.mkShell {
-            buildInputs = [ node roc-full ];
-            shellHook = ''
-              export ROC_LSP_PATH=${roc-full}/bin/roc_ls
-            '';
-          };
-        };
-      });
+  outputs = {
+    nixpkgs,
+    roc,
+    ...
+  }: let
+    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+  in {
+    formatter = nixpkgs.lib.genAttrs systems (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+      in
+        pkgs.nixpkgs-fmt
+    );
+    devShells = nixpkgs.lib.genAttrs systems (system: let
+      pkgs = import nixpkgs {inherit system;};
+      rocPkgs = roc.packages.${system};
+      node = pkgs.nodejs_20;
+      corepackEnable = pkgs.runCommand "corepack-enable" {} ''
+        mkdir -p $out/bin
+        ${node}/bin/corepack enable --install-directory $out/bin
+      '';
+    in {
+      default = pkgs.mkShell {
+        buildInputs = [
+          corepackEnable
+          node
+          # NOTE: this includes the cli as well as the language server
+          # we could switch it if we wanted to be slightly smaller on the dep
+          (with rocPkgs; [full])
+        ];
+        shellHook = ''
+          export ROC_LSP_PATH=${rocPkgs.full}/bin/roc_language_server
+        '';
+      };
+    });
+  };
 }
