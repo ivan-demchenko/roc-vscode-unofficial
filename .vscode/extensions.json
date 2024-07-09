@@ -6,6 +6,8 @@
     "github.vscode-github-actions",
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
-    "vivaxy.vscode-conventional-commits"
+    "vivaxy.vscode-conventional-commits",
+    "jnoortheen.nix-ide",
+    "mkhl.direnv"
   ]
 }

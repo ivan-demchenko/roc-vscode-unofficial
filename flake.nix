@@ -3,7 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     roc = {
       url = "github:roc-lang/roc";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = {
@@ -15,30 +15,21 @@
   in {
     formatter = nixpkgs.lib.genAttrs systems (
       system: let
-        pkgs = import nixpkgs {inherit system;};
+        pkgs = nixpkgs.legacyPackages.${system};
       in
-        pkgs.nixpkgs-fmt
+        pkgs.alejandra
     );
     devShells = nixpkgs.lib.genAttrs systems (system: let
-      pkgs = import nixpkgs {inherit system;};
+      pkgs = nixpkgs.legacyPackages.${system};
       rocPkgs = roc.packages.${system};
-      node = pkgs.nodejs_20;
-      corepackEnable = pkgs.runCommand "corepack-enable" {} ''
-        mkdir -p $out/bin
-        ${node}/bin/corepack enable --install-directory $out/bin
-      '';
     in {
       default = pkgs.mkShell {
-        buildInputs = [
-          corepackEnable
-          node
-          # NOTE: this includes the cli as well as the language server
-          # we could switch it if we wanted to be slightly smaller on the dep
+        buildInputs = with pkgs; [
+          nil
+          corepack
+          nodejs-slim
           (with rocPkgs; [full])
         ];
-        shellHook = ''
-          export ROC_LSP_PATH=${rocPkgs.full}/bin/roc_language_server
-        '';
       };
     });
   };
