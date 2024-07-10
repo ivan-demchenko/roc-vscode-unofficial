@@ -31,7 +31,7 @@ const config = {
             loader: 'ts-loader',
             options: {
               compilerOptions: {
-                module: 'es6',
+                module: 'NodeNext',
               },
             },
           },
