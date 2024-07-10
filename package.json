@@ -72,13 +72,13 @@
   },
   "scripts": {
     "vscode:prepublish": "webpack --mode production",
-    "webpack": "webpack --mode development",
-    "webpack-dev": "webpack --mode development --watch",
+    "dev": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
     "test": "echo 'No tests for now'",
     "prepare": "husky",
     "lint:code": "biome check --write ./src",
     "lint:commit": "commitlint --edit",
-    "release:start": "semantic-release"
+    "release": "semantic-release"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
