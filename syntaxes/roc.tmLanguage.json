@@ -144,13 +144,13 @@
             },
             {
               "name": "source.roc",
-              "begin": "\\$\\(",
+              "begin": "\\$\\{",
               "beginCaptures": {
                 "0": {
                   "name": "constant.character.escape.roc"
                 }
               },
-              "end": "\\)",
+              "end": "\\}",
               "endCaptures": {
                 "0": {
                   "name": "constant.character.escape.roc"
