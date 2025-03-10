@@ -97,7 +97,6 @@
     "semantic-release": "^24.2.2",
     "semantic-release-vsce": "^6.0.6",
     "ts-loader": "^9.5.0",
-    "ts-results": "^3.3.0",
     "typescript": "^5.5.3",
     "webpack": "^5.92.1",
     "webpack-cli": "^5.1.4"
@@ -108,6 +107,7 @@
     ]
   },
   "dependencies": {
+    "ts-results": "^3.3.0",
     "vscode-languageclient": "^9.0.1"
   },
   "packageManager": "pnpm@8.14.1"
