@@ -16,7 +16,7 @@ The unofficial VSCode extension for the [Roc language](https://roc-lang.org/). D
 
 ### Configuring language server
 
-The `roc_language_server` binary is included with [the roc nightly](https://github.com/roc-lang/roc/releases). You can also [build it from source](https://github.com/roc-lang/roc/blob/main/crates/lang_srv/README.md#building-from-source) if you need to.
+The `roc_language_server` binary is included with [the roc nightly](https://github.com/roc-lang/roc/releases). You can also [build it from source](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md) if you need to.
 
 Update your VSCode `settings.json` to point to the language server binary location:
 
