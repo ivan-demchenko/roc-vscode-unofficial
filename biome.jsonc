@@ -22,8 +22,7 @@
       "suspicious": {
         "noDoubleEquals": "warn"
       }
-    },
-    "ignore": ["**/out", "**/dist", "**/*.d.ts"]
+    }
   },
   "javascript": {
     "formatter": {
@@ -45,5 +44,11 @@
     "formatter": {
       "trailingCommas": "none"
     }
+  },
+  "vcs": {
+    "clientKind": "git",
+    "defaultBranch": "main",
+    "enabled": true,
+    "useIgnoreFile": true
   }
 }
