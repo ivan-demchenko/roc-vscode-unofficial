@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  ts-results:
+    specifier: ^3.3.0
+    version: 3.3.0
   vscode-languageclient:
     specifier: ^9.0.1
     version: 9.0.1
@@ -58,9 +61,6 @@ devDependencies:
   ts-loader:
     specifier: ^9.5.0
     version: 9.5.1(typescript@5.5.3)(webpack@5.92.1)
-  ts-results:
-    specifier: ^3.3.0
-    version: 3.3.0
   typescript:
     specifier: ^5.5.3
     version: 5.5.3
@@ -4666,7 +4666,7 @@ packages:
 
   /ts-results@3.3.0:
     resolution: {integrity: sha512-FWqxGX2NHp5oCyaMd96o2y2uMQmSu8Dey6kvyuFdRJ2AzfmWo3kWa4UsPlCGlfQ/qu03m09ZZtppMoY8EMHuiA==}
-    dev: true
+    dev: false
 
   /tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
