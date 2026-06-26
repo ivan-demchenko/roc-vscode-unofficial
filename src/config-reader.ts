@@ -1,11 +1,13 @@
+import { None, Option, Some } from 'ts-results';
 import * as vscode from 'vscode';
-import { Option, Some, None } from 'ts-results';
 
 const CONFIGURATION_HEADER = 'roc-lang';
 const CONFIG_OPTION = {
   languageServer: {
     exe: 'language-server.exe',
+    args: 'language-server.args',
     debugExe: 'language-server.debug-exe',
+    debugArgs: 'language-server.debug-args',
   },
 } as const;
 
@@ -29,6 +31,15 @@ function getEnvVar(key: string): Option<string> {
   return convertUnknownToString(val);
 }
 
+function getArrayConfig(key: string): string[] {
+  const val = vscode.workspace.getConfiguration(CONFIGURATION_HEADER).get(key);
+
+  if (Array.isArray(val)) {
+    return val.filter((item): item is string => typeof item === 'string');
+  }
+  return [];
+}
+
 function optionOr<T>(opt: Option<T>, fallback: Option<T>): Option<T> {
   if (opt.some) {
     return opt;
@@ -39,7 +50,9 @@ function optionOr<T>(opt: Option<T>, fallback: Option<T>): Option<T> {
 
 export type ModuleAPI = {
   getExecutablePath(): Option<string>;
+  getExecutableArgs(): string[];
   getDebugExecutablePath(): Option<string>;
+  getDebugExecutableArgs(): string[];
 };
 
 export function activate(): ModuleAPI {
@@ -50,11 +63,17 @@ export function activate(): ModuleAPI {
         getEnvVar('ROC_LSP_PATH'),
       );
     },
+    getExecutableArgs: () => {
+      return getArrayConfig(CONFIG_OPTION.languageServer.args);
+    },
     getDebugExecutablePath: () => {
       return optionOr(
         getStringConfig(CONFIG_OPTION.languageServer.debugExe),
         getEnvVar('ROC_LSP_DEBUG_PATH'),
       );
+    },
+    getDebugExecutableArgs: () => {
+      return getArrayConfig(CONFIG_OPTION.languageServer.debugArgs);
     },
   };
 }

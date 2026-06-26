@@ -41,6 +41,25 @@
         "path": "./syntaxes/roc.tmLanguage.json"
       }
     ],
+    "semanticTokenScopes": [
+      {
+        "language": "roc",
+        "scopes": {
+          "namespace": ["entity.name.namespace"],
+          "type": ["entity.name.type", "support.type"],
+          "parameter": ["variable.parameter"],
+          "variable": ["variable.other"],
+          "property": ["variable.other.property"],
+          "enumMember": ["variable.other.enummember", "constant.other.enum"],
+          "function": ["entity.name.function"],
+          "keyword": ["keyword.control", "keyword"],
+          "string": ["string.quoted", "string"],
+          "number": ["constant.numeric"],
+          "operator": ["keyword.operator"],
+          "comment": ["comment"]
+        }
+      }
+    ],
     "commands": [
       {
         "command": "roc-lang-unofficial.ls-start",
@@ -60,11 +79,27 @@
         "properties": {
           "roc-lang.language-server.exe": {
             "type": "string",
-            "description": "Path to the language server executable"
+            "description": "Path to the language server executable (e.g., /path/to/roc)"
+          },
+          "roc-lang.language-server.args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "description": "Arguments to pass to the language server (e.g., [\"experimental-lsp\", \"--debug-transport\"])"
           },
           "roc-lang.language-server.debug-exe": {
             "type": "string",
             "description": "Path to the debug language server executable"
+          },
+          "roc-lang.language-server.debug-args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "description": "Arguments for the debug language server"
           }
         }
       }
@@ -74,38 +109,38 @@
     "vscode:prepublish": "webpack --mode production",
     "dev": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "test": "echo 'No tests for now'",
+    "check": "tsc --noEmit && biome check ./src",
+    "test": "pnpm run check",
     "prepare": "husky",
     "lint:code": "biome check --write ./src",
     "lint:commit": "commitlint --edit",
     "release": "semantic-release"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
+    "@biomejs/biome": "^1.9.4",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@semantic-release/changelog": "^6.0.3",
-    "@types/mocha": "^10.0.7",
-    "@types/node": "^20.14.10",
-    "@types/vscode": "^1.91.0",
-    "@vscode/test-electron": "^2.4.1",
-    "glob": "^11.0.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
-    "mocha": "^10.6.0",
-    "rimraf": "^6.0.0",
-    "semantic-release": "^24.2.2",
-    "semantic-release-vsce": "^6.0.6",
-    "ts-loader": "^9.5.0",
+    "@types/node": "^20.19.43",
+    "@types/vscode": "1.97.0",
+    "@vscode/vsce": "^3.9.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "semantic-release": "^24.2.9",
+    "semantic-release-vsce": "^6.1.5",
+    "ts-loader": "^9.6.2",
     "ts-results": "^3.3.0",
-    "typescript": "^5.5.3",
-    "webpack": "^5.92.1",
+    "typescript": "^5.9.3",
+    "webpack": "^5.108.0",
     "webpack-cli": "^5.1.4"
   },
   "lint-staged": {
     "*": [
       "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
     ]
+  },
+  "vsce": {
+    "dependencies": false
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"

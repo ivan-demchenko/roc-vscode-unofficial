@@ -286,12 +286,12 @@
           "name": "keyword.other.period.roc"
         }
       },
-      "end": "\\s",
+      "end": "(?=[^a-zA-Z0-9_'!.]|$)",
       "patterns": [
         { "include": "#module-member-access" },
         { "include": "#constructor" },
         {
-          "match": "\\b[a-z][a-zA-Z0-9_']*\\b",
+          "match": "[a-z][a-zA-Z0-9_'!]*",
           "name": "support.function.roc"
         }
       ]

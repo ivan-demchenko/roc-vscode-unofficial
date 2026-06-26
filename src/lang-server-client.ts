@@ -1,14 +1,13 @@
+import { Err, None, Ok, type Option, type Result } from 'ts-results';
 import * as vscode from 'vscode';
-import { type Result, Ok, Err, type Option, None } from 'ts-results';
-import type { ModuleAPI as OutputChannelModule } from './output-channel';
-import type { ModuleAPI as ConfigModule } from './config-reader';
 import {
   Executable,
   LanguageClient,
   LanguageClientOptions,
   ServerOptions,
-  TransportKind,
 } from 'vscode-languageclient/node';
+import type { ModuleAPI as ConfigModule } from './config-reader';
+import type { ModuleAPI as OutputChannelModule } from './output-channel';
 
 let maybeClient: Option<LanguageClient> = None;
 
@@ -17,22 +16,26 @@ export type ModuleAPI = {
   stop(onStopped: () => void, onError: (e: unknown) => void): void;
 };
 
-type ExecutablePathsTuple = {
+type ExecutableConfig = {
   lsExe: Option<string>;
+  lsArgs: string[];
   lsDebugExe: Option<string>;
+  lsDebugArgs: string[];
 };
 
-function getExecutablePaths(configReader: ConfigModule): ExecutablePathsTuple {
+function getExecutableConfig(configReader: ConfigModule): ExecutableConfig {
   return {
     lsExe: configReader.getExecutablePath(),
+    lsArgs: configReader.getExecutableArgs(),
     lsDebugExe: configReader.getDebugExecutablePath(),
+    lsDebugArgs: configReader.getDebugExecutableArgs(),
   };
 }
 
 function getServerOptions(
-  executablePaths: ExecutablePathsTuple,
+  config: ExecutableConfig,
 ): Result<ServerOptions, string> {
-  const { lsExe, lsDebugExe } = executablePaths;
+  const { lsExe, lsArgs, lsDebugExe, lsDebugArgs } = config;
   if (lsExe.none) {
     return Err(
       'roc-lang: "roc-lang.language-server.exe" is not configured. No language server will be started.',
@@ -42,14 +45,19 @@ function getServerOptions(
   const runExecutable = lsExe.map(
     (command): Executable => ({
       command,
-      args: [],
+      args: lsArgs,
       options: { shell: true },
-      transport: TransportKind.stdio,
     }),
   ).val;
 
   const debugExecutable = lsDebugExe
-    .map((command): Executable => ({ command, transport: TransportKind.stdio }))
+    .map(
+      (command): Executable => ({
+        command,
+        args: lsDebugArgs.length > 0 ? lsDebugArgs : lsArgs,
+        options: { shell: true },
+      }),
+    )
     .unwrapOr(runExecutable);
 
   return new Ok({
@@ -89,16 +97,22 @@ export function activate(
   outputChannel: OutputChannelModule,
   configReader: ConfigModule,
 ): ModuleAPI {
-  const paths = getExecutablePaths(configReader);
+  const config = getExecutableConfig(configReader);
 
   outputChannel.server.appendLine(
-    `LS executable path: ${paths.lsExe.toString()}`,
+    `LS executable path: ${config.lsExe.toString()}`,
   );
   outputChannel.server.appendLine(
-    `LS debug executable path: ${paths.lsDebugExe.toString()}`,
+    `LS executable args: ${JSON.stringify(config.lsArgs)}`,
+  );
+  outputChannel.server.appendLine(
+    `LS debug executable path: ${config.lsDebugExe.toString()}`,
+  );
+  outputChannel.server.appendLine(
+    `LS debug executable args: ${JSON.stringify(config.lsDebugArgs)}`,
   );
 
-  const clientResult = getServerOptions(paths).andThen((serverOptions) => {
+  const clientResult = getServerOptions(config).andThen((serverOptions) => {
     return getClientOptions(outputChannel.server).map((clientOptions) => {
       return new LanguageClient(
         'roc-lang',
