@@ -70,6 +70,9 @@ function getClientOptions(
     ],
     progressOnInitialization: true,
     outputChannel: outputChannel,
+    initializationOptions: {
+      trustedWorkspace: vscode.workspace.isTrusted,
+    },
   });
 }
 
